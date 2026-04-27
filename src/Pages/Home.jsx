@@ -1,37 +1,31 @@
-import { useEffect } from "react"
-import Card from "../Components/Card"
-import Navbar from "../Components/NavBar"
-import axios from "axios"
+import { useEffect, useState } from "react";
+import Card from "../Components/Card";
+import Navbar from "../Components/NavBar";
+import axios from "axios";
 
+function Home() {
+  const [blogs, setBlogs] = useState([]);
 
-function Home(){
-    const fetchBlogs= async()=>{
-       const response = await axios.get("http://localhost:3000/blog")
+  const fetchBlogs = async () => {
+    const response = await axios.get("http://localhost:3000/blog");
+    setBlogs(response.data.data);
+  };
 
-    }
-    console.log(fetchBlogs)
-    
-    
-    useEffect(()=>{
-        fetchBlogs()
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
 
-    },[])
-return(
-<>
-<Navbar/>
-<div className="flex flex-wrap">
-    <Card/>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
+  return (
+    <>
+      <Navbar />
 
-</div>
-
-
-</>
-)
+      <div className="flex flex-wrap gap-4">
+        {blogs.map((blog) => (
+          <Card key={blog._id} blog={blog} />
+        ))}
+      </div>
+    </>
+  );
 }
 
-
-export default Home
+export default Home;
