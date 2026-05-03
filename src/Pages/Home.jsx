@@ -16,14 +16,14 @@ function Home() {
   }, []);
 
   return (
-    <>
+    <>  
       <Navbar />
 
-      <div className="flex flex-wrap gap-4">
-        {blogs.map((blog) => (
-          <Card key={blog._id} blog={blog} />
-        ))}
-      </div>
+      <div className="flex flex-wrap justify-center gap-4">
+  {blogs.map((blog) => (
+    <Card key={blog._id} blog={blog} />
+  ))}
+</div>
     </>
   );
 }
