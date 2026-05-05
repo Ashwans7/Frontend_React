@@ -3,6 +3,7 @@ import './App.css'
 import Home from "./Pages/Home"
 import SingleBlog from "./Pages/SingleBlog"
 import CreateBlog from "./Pages/CreateBlog"
+import EditBlog from "./Pages/EditBlog";
 
 export default function App() {
   return (
@@ -12,6 +13,8 @@ export default function App() {
       <Route path='/' element={<Home/>}/>
       <Route path="/create" element={<CreateBlog/>}/>
       <Route path="/blog/:id" element={<SingleBlog/>}/>
+     <Route path="/edit/:id" element={<EditBlog />} />
+
       
       
       

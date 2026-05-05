@@ -62,8 +62,7 @@ function CreateBlog() {
     }
   };
 
-  return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f8f7f4", fontFamily: "'Georgia', serif" }}>
+  return (<> <div style={{ minHeight: "100vh", backgroundColor: "#f8f7f4", fontFamily: "'Georgia', serif" }}>
       <Navbar />
 
       <div style={{ maxWidth: "680px", margin: "48px auto", padding: "0 24px 64px" }}>
@@ -246,7 +245,8 @@ function CreateBlog() {
 
         </form>
       </div>
-    </div>
+    </div> </>
+   
   );
 }
 
