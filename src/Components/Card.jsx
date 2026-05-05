@@ -7,7 +7,7 @@ function Card({ blog }) {
       
       {/* Image */}
       <img
-        src={`http://localhost:3000/${blog.image}`}
+        src={`http://localhost:3000/images/${blog.image}`}
         alt={blog.title}
        className="w-full h-52 object-contain bg-gray-100"
       />
