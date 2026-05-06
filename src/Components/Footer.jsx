@@ -60,14 +60,7 @@ export default function Footer({ totalPosts = 0 }) {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-stone-100 dark:border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-stone-400 dark:text-stone-500">
-            © {year} DevDiary. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4 text-xs text-stone-400 dark:text-stone-500">
-            <span>Made with ❤️ and React</span>
-          </div>
-        </div>
+        
       </div>
     </footer>
   );
