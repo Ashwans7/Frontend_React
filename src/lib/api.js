@@ -6,8 +6,13 @@ export const api = axios.create({
   baseURL: BASE_URL,
 });
 
-export const IMAGE_URL = (filename) =>
-  filename ? `${BASE_URL}/images/${filename}` : null;
+export const IMAGE_URL = (filename) => {
+  if (!filename) return null;
+  // If it's already a full URL (Cloudinary), return as-is
+  if (filename.startsWith('http')) return filename;
+  // Legacy: local filename served from backend
+  return `${BASE_URL}/images/${filename}`;
+};
 
 export const blogApi = {
   getAll: () => api.get('/blog'),
