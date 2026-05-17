@@ -4,7 +4,7 @@ import { IMAGE_URL } from '../lib/api';
 import { readingTime, formatDate, stringToColor, getLikes, toggleLike, excerpt } from '../lib/utils';
 
 function Card({ blog, featured = false, layout = 'grid' }) {
-  const imgSrc = IMAGE_URL(blog.image);
+  const imgSrc = IMAGE_URL(blog.image, { width: featured ? 1400 : layout === 'list' ? 320 : 640 });
   const date = formatDate(blog.createdAt || blog._id, true);
   const readTime = readingTime(blog.description);
   const color = stringToColor(blog.title);
@@ -23,7 +23,7 @@ function Card({ blog, featured = false, layout = 'grid' }) {
       <Link to={`/blog/${blog._id}`} className="group block">
         <article className="relative rounded-2xl overflow-hidden bg-stone-900 shadow-xl h-[400px] sm:h-[460px]">
           {imgSrc ? (
-            <img src={imgSrc} alt={blog.title}
+            <img src={imgSrc} alt={blog.title} decoding="async" fetchPriority="high"
               className="absolute inset-0 w-full h-full object-cover opacity-55 group-hover:opacity-65 group-hover:scale-[1.03] transition-all duration-700" />
           ) : (
             <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${color}99, ${color}44)` }} />
@@ -72,7 +72,7 @@ function Card({ blog, featured = false, layout = 'grid' }) {
         <article className="flex gap-5 p-4 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 hover:shadow-md transition-all duration-200">
           <div className="w-28 h-20 sm:w-36 sm:h-24 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 shrink-0">
             {imgSrc ? (
-              <img src={imgSrc} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={imgSrc} alt={blog.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             ) : (
               <div className="w-full h-full" style={{ background: `linear-gradient(135deg, ${color}33, ${color}66)` }} />
             )}
@@ -113,7 +113,7 @@ function Card({ blog, featured = false, layout = 'grid' }) {
       <article className="h-full flex flex-col bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 hover:shadow-lg dark:hover:shadow-stone-950/60 transition-all duration-250">
         <div className="relative overflow-hidden aspect-[16/9] bg-stone-100 dark:bg-stone-800 shrink-0">
           {imgSrc ? (
-            <img src={imgSrc} alt={blog.title} className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500" />
+            <img src={imgSrc} alt={blog.title} loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500" />
           ) : (
             <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${color}22, ${color}55)` }}>
               <svg className="w-9 h-9 text-stone-300 dark:text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

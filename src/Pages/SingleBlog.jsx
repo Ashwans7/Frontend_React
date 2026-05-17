@@ -145,7 +145,7 @@ export default function SingleBlog() {
     );
   }
 
-  const imgSrc = IMAGE_URL(blog.image);
+  const imgSrc = IMAGE_URL(blog.image, { width: 1600 });
   const date = formatDate(blog.createdAt || blog._id);
   const ago = timeAgo(blog.createdAt || blog._id);
   const readTime = readingTime(blog.description);
@@ -162,7 +162,7 @@ export default function SingleBlog() {
         {/* ── Hero image ── */}
         {imgSrc ? (
           <div className="w-full max-h-[500px] overflow-hidden bg-stone-900">
-            <img src={imgSrc} alt={blog.title} className="w-full max-h-[500px] object-cover" />
+            <img src={imgSrc} alt={blog.title} decoding="async" fetchPriority="high" className="w-full max-h-[500px] object-cover" />
           </div>
         ) : (
           <div className="w-full h-48 sm:h-64" style={{ background: `linear-gradient(135deg, ${color}33, ${color}66)` }} />
@@ -371,8 +371,8 @@ export default function SingleBlog() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {relatedBlogs.map(b => (
                   <Link key={b._id} to={`/blog/${b._id}`} className="group flex gap-4 p-4 rounded-2xl hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors">
-                    {IMAGE_URL(b.image) && (
-                      <img src={IMAGE_URL(b.image)} alt={b.title}
+                    {IMAGE_URL(b.image, { width: 160 }) && (
+                      <img src={IMAGE_URL(b.image, { width: 160 })} alt={b.title} loading="lazy" decoding="async"
                         className="w-16 h-16 rounded-xl object-cover shrink-0" />
                     )}
                     <div className="min-w-0">
